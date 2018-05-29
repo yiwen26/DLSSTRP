@@ -1,6 +1,6 @@
 # Defects Discoverers
 ## Deep Learning of Solid-State Transformations and Reaction Pathways in 2D Materials
-the project with ** Oak Ridge National Lab **
+the project with ```Oak Ridge National Lab ```
 * group members: Sarthak, Jimin and Yiwen
 * mentor: Maxim Ziatdinov
 
