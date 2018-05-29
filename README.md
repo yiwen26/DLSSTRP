@@ -15,7 +15,7 @@ Python
 * scikit_learn
 ## Repository Outlnes
 ### Data
-simulated STEM data on individual defects of $WS_2$
+simulated STEM data on individual defects of WS_2
 ### Docs
 Documentations about this project. 
 ### Module
