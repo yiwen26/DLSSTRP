@@ -104,7 +104,6 @@ def get_defects(defects, target_class):
     """
     
     assert type(defects) == dict, ('Wrong data type', 'Must be a dictionary')
-    
     for i, key in enumerate(defects.keys()):
         if i == target_class:
             return key
