@@ -104,7 +104,7 @@ def get_defects(defects, target_class):
     """
     
     assert type(defects) == dict, ('Wrong data type', 'Must be a dictionary')
-#    assert type(target_class) == np.int64, ('Wrong data type', 'Must be an integer')
+    #assert type(target_class) == np.int64, ('Wrong data type', 'Must be an integer')
     
     for i, key in enumerate(defects.keys()):
         if i == target_class:
