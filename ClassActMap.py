@@ -87,7 +87,7 @@ def get_SoftmaxWeights(model):
 
 
 
-def get_defects(defects, target_class):
+def get_defects(defects, n):
     
     """
     Provides the exact type of defect by using target class predicted and defect dictinary provided.
@@ -103,7 +103,6 @@ def get_defects(defects, target_class):
     Error if the input type is incorrect
     """
     
-    assert type(defects) == dict, ('Wrong data type', 'Must be a dictionary')
     for i, key in enumerate(defects.keys()):
-        if i == target_class:
+        if i == n:
             return key
