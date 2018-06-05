@@ -23,7 +23,7 @@ simulated STEM data on individual defects of WS_2
 ### Docs
 Documentations about this project. 
 ### Use Case
-
+![alt text](https://github.com/yiwen26/DLSSTRP/blob/master/use%20case.png)
 
 ### Module
 ### Poster
