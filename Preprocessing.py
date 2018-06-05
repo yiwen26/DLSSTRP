@@ -77,21 +77,16 @@ def AddNoiseImage(img, folder_name, save_directory, image):
     
     Arguments:
     
-    img: the augemented image data you read in
-    
-    folder_name: for example, if it is 'Mo', it means the raw data is from folder 'Mo', and the 
-                 image with noise will be saved under 'Mo/Mo_Augmented'
-                 
-    save_directory : Directory where the images will be saved after adding noise
-                 
-    image: the filename of augmented image, after adding noise to this image, a new image named '"noise type"+image ' 
-           will be saved
+    img : the augemented image data you read in
+    folder_name : for example, if it is 'Mo', it means the raw data is from folder 'Mo', and the image with noise will be saved under 'Mo/Mo_Augmented'             
+    save_directory : Directory where the images will be saved after adding noise            
+    image : the filename of augmented image, after adding noise to this image, a new image named "noise type"+image will be saved
     
     Returns:
     
     Separate images with Gaussian, Poisson, Speckle and Salt&Pepper noise added.
     
-    Raises:
+    Raises : 
     
     Error when input data type is incorrect
     
@@ -100,11 +95,7 @@ def AddNoiseImage(img, folder_name, save_directory, image):
     assert type(folder_name) == str, ('Wrong Data type', 'folder_name must be a string')
     assert type(image) == str, ('Wrong Data type', 'image must be a string')
     
-#    directory = path +'/'+ folder_name+'/' +folder_name+'_Augmented' #+'/'+folder_name+'_noise'
-#    
-#    if not os.path.exists(directory):
-#        os.makedirs(directory)
-    
+
     img_grey = rgb2gray(img)
     img_gauss = random_noise(img_grey, mode='gaussian', mean=0., var=0.01)
     img_sp = random_noise(img_grey, mode='s&p', salt_vs_pepper=0.5)
