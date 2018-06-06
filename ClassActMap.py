@@ -98,9 +98,6 @@ def get_defects(defects, n):
     
     Returns:
     Defect type in the image provided
-    
-    Raises:
-    Error if the input type is incorrect
     """
     
     for i, key in enumerate(defects.keys()):
