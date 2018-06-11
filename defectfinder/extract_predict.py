@@ -220,7 +220,7 @@ def extractDefects(img, classpred, softmax_threhold, bbox):
     return thresh, defim, defcoord
 
 
-def defectcropped(bbox, imgdata, fnum, defcoord):
+def defectcropped(bbox, img, defcoord):
     """
     imgdata : the raw image file converted from dm3 video file
     """
@@ -239,7 +239,7 @@ def defectcropped(bbox, imgdata, fnum, defcoord):
         if endy<0 or endy>512:
             continue
         else:
-            cropped=imgdata[fnum][startx:endx, starty:endy]
+            cropped=img[startx:endx, starty:endy]
             defect_list.append(cropped)  
     return defect_list
 
