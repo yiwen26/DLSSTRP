@@ -4,9 +4,11 @@ sudo: false
 env:
   global:
     - PIP_DEPS="pytest coveralls pytest-cov flake8"
-    
+
 python:
--'3'
+  - '2.7'
+  - '3.6'
+
 
 install:
 - travis_retry pip install $PIP_DEPS
