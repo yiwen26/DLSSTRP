@@ -2,9 +2,14 @@ language: python
 sudo: false
 
 python:
-  -'3.6'
+  -'3.6.4'
 
 env:
   global:
     - PIP_DEPS="pytest coveralls pytest-cov flake8"
-    
+
+after_success:
+- coveralls
+
+notifications:
+    slack: gingerlab:tFpXzHAuqsR3X17wUKaY3wMh
