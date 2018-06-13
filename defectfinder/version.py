@@ -52,4 +52,4 @@ MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
 #PACKAGE_DATA = {'defectfinder': [pjoin('data', '*')]}
-REQUIRES = ["numpy","scipy","scikit-image","openCV","matplotlib"]
+REQUIRES = ["numpy","scipy","scikit-image","OpenCV","matplotlib"]
