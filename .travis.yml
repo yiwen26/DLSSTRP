@@ -1,13 +1,21 @@
 language: python
 sudo: false
 
-python:
--'3.6.4'
-
 env:
   global:
     - PIP_DEPS="pytest coveralls pytest-cov flake8"
+    
+python:
+-'3.6.4'
 
+install:
+- travis_retry pip install $PIP_DEPS
+- travis_retry pip install -e .
+
+branches:
+  only:
+  - master
+  
 after_success:
 - coveralls
 
