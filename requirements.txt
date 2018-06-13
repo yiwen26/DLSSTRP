@@ -3,4 +3,3 @@ scipy
 matplotlib
 keras
 scikit-image
-openCV
