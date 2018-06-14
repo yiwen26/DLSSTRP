@@ -17,7 +17,7 @@ before_install:
 install:
 - travis_retry pip install $PIP_DEPS
 - travis_retry pip install -r requirements.txt
-#- travis_retry pip install -e .
+- travis_retry pip install -e .
 
 script:
 - flake8 --ignore N802,N806,E501,E741,F841 `find . -name \*.py | grep -v setup.py | grep -v version.py | grep -v __init__.py | grep -v /dm3_lib/`
