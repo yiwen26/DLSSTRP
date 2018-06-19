@@ -1,9 +1,10 @@
 from __future__ import absolute_import, division, print_function
+import sys
 import numpy as np
 import keras
-import sys
-sys.path.insert('../..', 0)
-from defectfinder import classactmap as cmap
+
+sys.path.append('../..')
+from defectfinder import classactmap as cmap #noqa
 
 """Testing functions for class activation modules"""
 
@@ -16,13 +17,13 @@ def test_image_preprocessing_cam():
         image_data = ()
         image_size = int
         cmap.image_preprocessing_cam(image_data, image_size)
-        
+
     except (Exception):
         pass
-    
+
     else:
         raise Exception('Error not handled')
-        
+
     return
 
 
@@ -34,13 +35,13 @@ def test_get_predictions():
         image = ()
         model = keras.models
         cmap.get_predictions(model, image)
-        
+
     except (Exception):
         pass
-    
+
     else:
         raise Exception('Error not handled')
-        
+
     return
 
 
@@ -51,13 +52,13 @@ def test_get_SoftmaxWeights():
     try:
         model = keras.models
         cmap.get_SoftmaxWeights(model)
-        
+
     except (Exception):
         pass
-    
+
     else:
         raise Exception('Error not handled')
-        
+
     return
 
 
@@ -69,11 +70,11 @@ def test_get_defects():
         defects = ()
         n = np.float
         cmap.get_defects(defects, n)
-        
+
     except (Exception):
         pass
-    
+
     else:
         raise Exception('Error not handled')
-        
+
     return
