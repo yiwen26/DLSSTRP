@@ -2,9 +2,8 @@ from __future__ import absolute_import, division, print_function
 import sys
 import numpy as np
 import keras
-
-sys.path.append('../..')
-from defectfinder import classactmap as cmap #noqa
+import pathmagic # noqa
+from defectfinder import classactmap as cmap
 
 """Testing functions for class activation modules"""
 
