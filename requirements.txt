@@ -3,4 +3,5 @@ scipy
 matplotlib
 keras
 scikit-image
+scikit-learn
 opencv-python
