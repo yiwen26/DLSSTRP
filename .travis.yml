@@ -3,7 +3,7 @@ sudo: false
 
 env:
   global:
-    - PIP_DEPS="pytest coveralls pytest-cov flake8"
+    - PIP_DEPS="pytest coveralls coverage pytest-cov flake8"
 
 python:
   - '2.7'
@@ -16,9 +16,13 @@ install:
 
 script:
 - flake8 --ignore N802,N806,E501,E741,F841,F821 `find . -name \*.py | grep -v setup.py | grep -v version.py | grep -v __init__.py | grep -v /dm3_lib/`
+- mkdir for_test
+- cd for_test
+- py.test --pyargs defectfinder --cov-report term-missing --cov=defectfinder
 
 after_success:
 - coveralls
+- coverage report
 
 notifications:
     slack: gingerlab:tFpXzHAuqsR3X17wUKaY3wMh
