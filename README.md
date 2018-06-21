@@ -1,6 +1,6 @@
 # Defects Discoverers (defectfinder)
 ## Deep Learning of Solid-State Transformations and Reaction Pathways in 2D Materials
-[![Build Status](https://travis-ci.org/SarthakJariwala/DLSSTRP.svg?branch=master)](https://travis-ci.org/SarthakJariwala/DLSSTRP)
+[![Build Status](https://travis-ci.org/SarthakJariwala/DLSSTRP.svg?branch=master)](https://travis-ci.org/SarthakJariwala/DLSSTRP) [![PyPI version](https://badge.fury.io/py/defectfinder.svg)](https://badge.fury.io/py/defectfinder)
 
 Project with `Oak Ridge National Lab`
 * Group members: Sarthak, Jimin and Yiwen

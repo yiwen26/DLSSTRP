@@ -3,7 +3,7 @@ sudo: false
 
 env:
   global:
-    - PIP_DEPS="pytest coveralls pytest-cov flake8"
+    - PIP_DEPS="pytest coveralls coverage pytest-cov flake8"
 
 python:
   - '2.7'
@@ -19,6 +19,7 @@ script:
 
 after_success:
 - coveralls
+- coverage report
 
 notifications:
     slack: gingerlab:tFpXzHAuqsR3X17wUKaY3wMh
