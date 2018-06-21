@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = defectfinder/*
+include = defectfinder/*
+omit = */setup.py
+[report]
+include = defectfinder/*
