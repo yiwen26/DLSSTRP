@@ -16,10 +16,6 @@ install:
 
 script:
 - flake8 --ignore N802,N806,E501,E741,F841,F821 `find . -name \*.py | grep -v setup.py | grep -v version.py | grep -v __init__.py | grep -v /dm3_lib/`
-- coverage run -m unittest discover 
-# - mkdir for_test
-# - cd for_test
-# - py.test --pyargs defectfinder --cov-report term-missing --cov=defectfinder
 
 after_success:
 - coveralls
