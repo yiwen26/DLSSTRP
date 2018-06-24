@@ -13,18 +13,17 @@ from keras.initializers import glorot_normal
 from keras.wrappers.scikit_learn import KerasClassifier
 
 from keras.optimizers import SGD
-import matplotlib.pylab as plt
 from sklearn.model_selection import train_test_split
 from sklearn.utils import resample
 from sklearn.model_selection import GridSearchCV
+
+from IPython.display import clear_output
+from matplotlib import pyplot as plt
 
 import numpy as np
 
 from scipy import fftpack
 from scipy import ndimage
-
-from IPython.display import clear_output
-from matplotlib import pyplot as plt
 
 import cv2
 
@@ -136,9 +135,9 @@ def gridsearch(x_train,y_train_origin,learn_rate,batch_size,epochs):
 
     #create a new directory to save all the training history and model_weights
     version=1
-    while os.path.exists('./learn_rate'+str(version)):
+    while os.path.exists('../HyperparametersTuning/learn_rate'+str(version)):
         version=version+1
-    os.makedirs('./learn_rate'+str(version))
+    os.makedirs('../HyperparametersTuning/learn_rate'+str(version))
 
     fitresult=[] #list save history of each keras model
     models_grid=[get_model(learn_rate[0])]*len(learn_rate) #list save each keras model
@@ -156,12 +155,12 @@ def gridsearch(x_train,y_train_origin,learn_rate,batch_size,epochs):
     
     for i in range(len(fitresult)):
         #save history of each model
-        with open('./learn_rate'+str(version)+"/fitresult"+str(i)+".txt","wb") as fp:
+        with open('../HyperparametersTuning/learn_rate'+str(version)+"/fitresult"+str(i)+".txt","wb") as fp:
             pickle.dump(fitresult[i].history,fp)
     
         #save each model and weights:
-        models_grid[i].save('./learn_rate'+str(version)+'/model'+str(i)+'.h5')
-        models_grid[i].save_weights('./learn_rate'+str(version)+'/model_weight'+str(i)+'.h5')
+        models_grid[i].save('../HyperparametersTuning/learn_rate'+str(version)+'/model'+str(i)+'.h5')
+        models_grid[i].save_weights('../HyperparametersTuning/learn_rate'+str(version)+'/model_weight'+str(i)+'.h5')
         
     return fitresult,models_grid
 
@@ -190,4 +189,43 @@ def load_results(learn_rate,path):
             load_res[i]=pickle.load(fp)
             
     return load_res
+
+
+class PlotLearning(Callback):
+    def on_train_begin(self, logs={}):
+        self.i = 0
+        self.x = []
+        self.losses = []
+        self.val_losses = []
+        self.acc = []
+        self.val_acc = []
+        self.fig = plt.figure()
+        
+        self.logs = []
+
+    def on_epoch_end(self, epoch, logs={}):
+        
+        self.logs.append(logs)
+        self.x.append(self.i)
+        self.losses.append(logs.get('loss'))
+        self.val_losses.append(logs.get('val_loss'))
+        self.acc.append(logs.get('acc'))
+        self.val_acc.append(logs.get('val_acc'))
+        self.i += 1
+        f, (ax1, ax2) = plt.subplots(1, 2, figsize=(15,5),sharex=True)
+        
+        clear_output(wait=True)
+        
+        ax1.set_yscale('log')
+        ax1.plot(self.x, self.losses, label="loss")
+        ax1.plot(self.x, self.val_losses, label="val_loss")
+        ax1.legend()
+        
+        ax2.plot(self.x, self.acc, label="accuracy")
+        ax2.plot(self.x, self.val_acc, label="validation accuracy")
+        ax2.legend()
+        
+        plt.show();
+        
+
 
