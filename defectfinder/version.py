@@ -4,9 +4,9 @@ from os.path import join as pjoin
 # Format expected by setup.py and doc/source/conf.py: string of form "X.Y.Z"
 _version_major = 0
 _version_minor = 1
-_version_micro = ''  # use '' for first of series, number for 1 and above
-# _version_extra = 'dev'
-_version_extra = ''  # Uncomment this for full releases
+_version_micro = 1  # use '' for first of series, number for 1 and above
+_version_extra = 'dev'
+# _version_extra = ''  # Uncomment this for full releases
 
 # Construct full version string from these.
 _ver = [_version_major, _version_minor]
@@ -26,22 +26,40 @@ CLASSIFIERS = ["Development Status :: 3 - Alpha",
                "Topic :: Scientific/Engineering"]
 
 # Description should be a one-liner:
-description = "defectfinder: finds and predicts defect types"
+description = "defectfinder: automated localization, classification and visualization of the defects in 2D materials from dynamic STEM data"
 # Long description will go up on the pypi page
 long_description = """
-To BE WRITTEN.....
+Understanding elementary mechanisms behind the solid-state phase
+ transformations and reactions is key to the tuning of the functional
+ properties of many technologically relevant materials. Recent advances
+ in scanning transmission electron microscopy (STEM) have allowed
+ unprecedented insight into these processes via observations of atomic
+ motion induced by thermal stimuli or electron beam. At the same time,
+ the ability to quickly acquire large, high-resolution datasets has created a
+ challenge for rapid physics-based analysis of STEM images and movies
+ that typically contain several hundreds to several thousand atomic units
+ (per image/frame).
+
+ Defectfinder enables the user to develop a convolutional-neural-network
+ based framework for automated localization, classification and visualization
+ of the defects using physics based models in 2D materials from dynamic
+ STEM data. It also enables the user to gain insight into the defect coordinates
+ with the help of class activation maps. Furthermore, it allows the user to
+ visualize and understand the transformations and reaction pathways
+ between defect types in these 2D materials.
+
 =======
-``defectfinder`` is licensed under the terms of the MIT license. See the file
+defectfinder  is licensed under the terms of the MIT license. See the file
 "LICENSE" for information on the history of this software, terms & conditions
 for usage, and a DISCLAIMER OF ALL WARRANTIES.
 """
 
 NAME = "defectfinder"
-MAINTAINER = "Sarthak"
+MAINTAINER = "Sarthak, Jimin, Yiwen, Maxim"
 MAINTAINER_EMAIL = "jariwala@uw.edu"
 DESCRIPTION = description
 LONG_DESCRIPTION = long_description
-URL = "https://github.com/SarthakJariwala/DLSSTRP"
+URL = "https://github.com/yiwen26/DLSSTRP"
 DOWNLOAD_URL = ""
 LICENSE = "MIT"
 AUTHOR = "SARTHAK"
@@ -52,4 +70,11 @@ MINOR = _version_minor
 MICRO = _version_micro
 VERSION = __version__
 #PACKAGE_DATA = {'defectfinder': [pjoin('data', '*')]}
-REQUIRES = ["numpy","scipy","scikit-image","matplotlib"]
+REQUIRES = [
+    "numpy",
+    "scipy",
+    "scikit-image",
+    "matplotlib",
+    "keras",
+    "scikit-learn",
+    "opencv-python"]
