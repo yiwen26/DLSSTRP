@@ -1,47 +1,24 @@
 from __future__ import print_function
 
-import keras
-from keras.preprocessing.image import array_to_img, img_to_array, load_img
-from keras.layers import Dense, Flatten, Dropout, Lambda, Activation
+from keras.layers import Dense, Activation
 from keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D, BatchNormalization
-from keras import layers
 from keras.models import Sequential
-from keras.models import load_model
-from keras import backend as K
-from keras.callbacks import *
-from keras.initializers import glorot_normal
-from keras.wrappers.scikit_learn import KerasClassifier
 
 from keras.optimizers import SGD
-import matplotlib.pylab as plt
 from sklearn.model_selection import train_test_split
-from sklearn.utils import resample
-from sklearn.model_selection import GridSearchCV
 
 import numpy as np
-
-from scipy import fftpack
-from scipy import ndimage
-
-from IPython.display import clear_output
-from matplotlib import pyplot as plt
-
-import cv2
-
 import pickle
 import os.path
 
 
 def detectGPU():
-	'''
-	detect if there is available GPU and show the devices list
-
-	Arguments: None
-
-	Returns: print available GPUs and Devices imformation
-
-	Raises:None
-	'''
+    """
+    Detects if there is available GPU and show the devices list
+    Arguments: None
+    Returns: print available GPUs and Devices imformation
+    Raises:None
+    """
 
     from keras import backend as K
     from tensorflow.python.client import device_lib
@@ -54,20 +31,14 @@ def detectGPU():
 
 
 def get_model(learn_rate):
+    """
+    Get keras convolutional neural network model with given learning rate
+    Arguments:learning rate
+    Returns:keras model
+    Raises:Error if the input is not a float
+    """
 
-
-	'''
-	get keras convolutional neural network model with given learning rate
-
-	Arguments:learning rate
-
-	Returns:keras model
-
-	Raises:Error if the input is not a float.
-
-	'''
-
-    assert type(learn_rate) == float, "learning rate must be a float"
+    assert isinstance(learn_rate, float), "learning rate must be a float"
 
     model = Sequential()
 
@@ -115,33 +86,24 @@ def get_model(learn_rate):
 
 
 def gridsearch(x_train, y_train_origin, learn_rate, batch_size, epochs):
+    """
+    Given the training dataset, it will be randomly split into training and
+    validation setand the keras model will be trained with given learn_rate,
+    batch size and epochs
+    Arguments:
+        x_train: x training dataset, need to be centered
+        y_train_origin: y training dataset, needless to be centered
+        learn_rate: a list of learning rate
+        batchsize: an int
+        epochs: an int
+    Returns:
+        fitresult: a list, each element is a keras history object
+        models_grid: a list, each element is a trained model
 
+        Every model, training history model_weights will be saved in a folder named learnrate
+    Raises:error if the shape of x or y is wrong
+    """
 
-	'''
-	given the training dataset, it will be randomly split into training and validation set
-	and the keras model will be trained with given learn_rate, batch size and epochs
-
-	Arguments:
-	x_train: x training dataset, need to be centered
-
-	y_train_origin: y training dataset, needless to be centered
-
-	learn_rate: a list of learning rate
-
-	batchsize: a int
-
-	epochs: a int
-
-	Returns:
-	fitresult: a list, each element is a keras history object
-	models_grid: a list, each element is a trained model
-
-	every model, training history model_weights will be saved in a folder named learnrate
-
-	Raises:
-	error if the shape of x or y is wrong
-
-	'''
     assert np.shape(x_train)[1:4] == (
         64, 64, 1), "the expected shape of x_train is (channels,img_x,img_y,1)"
 
@@ -198,19 +160,14 @@ def gridsearch(x_train, y_train_origin, learn_rate, batch_size, epochs):
 
 
 def load_results(learn_rate, path):
-
-	'''
-	Load training history for a list of model
-
-	Arguments:
-	learning rate
-	path:the directory where you store all the training history and model_weights
-
-	Returns: a list, each element is the training history of a model
-
-	Raises: error if the path not exist
-
-	'''
+    """
+    Load training history for a list of model
+    Arguments:
+        learn_rate: learning rate
+        path:the directory where you store all the training history and model_weights
+    Returns: a list, each element is the training history of a model
+    Raises: error if the path not exist
+    """
 
     assert os.path.exists(path), "No such path"
     # path is the directory you save all the training history and model_weights
