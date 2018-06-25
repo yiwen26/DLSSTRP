@@ -9,11 +9,9 @@ and add the code: backend: TkAgg
 from __future__ import absolute_import, division, print_function
 
 import keras
-import sys
 import numpy as np
-
-sys.path.append('..')
-import gridsearch
+import pathmagic # noqa
+from defectfinder import gridsearch
 
 
 def test_get_model():

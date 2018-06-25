@@ -33,17 +33,15 @@ import os.path
 
 
 def detectGPU():
+	'''
+	detect if there is available GPU and show the devices list
 
-'''
-detect if there is available GPU and show the devices list
+	Arguments: None
 
-Arguments: None
+	Returns: print available GPUs and Devices imformation
 
-Returns: print available GPUs and Devices imformation
-
-Raises:None
-
-'''
+	Raises:None
+	'''
 
     from keras import backend as K
     from tensorflow.python.client import device_lib
@@ -58,16 +56,16 @@ Raises:None
 def get_model(learn_rate):
 
 
-'''
-get keras convolutional neural network model with given learning rate
+	'''
+	get keras convolutional neural network model with given learning rate
 
-Arguments:learning rate
+	Arguments:learning rate
 
-Returns:keras model
+	Returns:keras model
 
-Raises:Error if the input is not a float.
+	Raises:Error if the input is not a float.
 
-'''
+	'''
 
     assert type(learn_rate) == float, "learning rate must be a float"
 
@@ -80,7 +78,7 @@ Raises:Error if the input is not a float.
                 7, 7), use_bias=False, strides=(
                 1, 1), input_shape=(
                     64, 64, 1), kernel_initializer="glorot_normal"))
-    #padding = 'same'
+    # padding = 'same'
     BatchNormalization(axis=1, momentum=0.99, epsilon=0.001, center=True)
     model.add(Activation("relu"))
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
@@ -119,31 +117,31 @@ Raises:Error if the input is not a float.
 def gridsearch(x_train, y_train_origin, learn_rate, batch_size, epochs):
 
 
-'''
-given the training dataset, it will be randomly split into training and validation set
-and the keras model will be trained with given learn_rate, batch size and epochs
+	'''
+	given the training dataset, it will be randomly split into training and validation set
+	and the keras model will be trained with given learn_rate, batch size and epochs
 
-Arguments:
-x_train: x training dataset, need to be centered
+	Arguments:
+	x_train: x training dataset, need to be centered
 
-y_train_origin: y training dataset, needless to be centered
+	y_train_origin: y training dataset, needless to be centered
 
-learn_rate: a list of learning rate
+	learn_rate: a list of learning rate
 
-batchsize: a int
+	batchsize: a int
 
-epochs: a int
+	epochs: a int
 
-Returns:
-fitresult: a list, each element is a keras history object
-models_grid: a list, each element is a trained model
+	Returns:
+	fitresult: a list, each element is a keras history object
+	models_grid: a list, each element is a trained model
 
-every model, training history model_weights will be saved in a folder named learnrate
+	every model, training history model_weights will be saved in a folder named learnrate
 
-Raises:
-error if the shape of x or y is wrong
+	Raises:
+	error if the shape of x or y is wrong
 
-'''
+	'''
     assert np.shape(x_train)[1:4] == (
         64, 64, 1), "the expected shape of x_train is (channels,img_x,img_y,1)"
 
@@ -201,18 +199,18 @@ error if the shape of x or y is wrong
 
 def load_results(learn_rate, path):
 
-'''
-Load training history for a list of model
+	'''
+	Load training history for a list of model
 
-Arguments:
-learning rate
-path:the directory where you store all the training history and model_weights
+	Arguments:
+	learning rate
+	path:the directory where you store all the training history and model_weights
 
-Returns: a list, each element is the training history of a model
+	Returns: a list, each element is the training history of a model
 
-Raises: error if the path not exist
+	Raises: error if the path not exist
 
-'''
+	'''
 
     assert os.path.exists(path), "No such path"
     # path is the directory you save all the training history and model_weights
