@@ -33,6 +33,8 @@ In order to analyze experimental datasets, `extract_predict` module can used. Th
 ### Data
 * Multislice STEM data (with augmentation and noise added) for all individual defects in WS~2 can be found in the **Multislice** folder
 * Models trained on WS~2 theoretical defects data can be found in the **Trained_Models** folder
+* **defect_list** folder contains the localized defect data for all the frames in the dynamic STEM movie
+* **Figures** folder contains all the figures generated from the code in the **Jupyter_notebooks**
 ### Example
 #### **Jupyter_notebooks** folder contains example notebooks implementing different modules from the software
 * *GenerateTrainingData* notebook demonstrates the application of `preprocessing` module to generate images with augmentation and noise.
@@ -40,9 +42,6 @@ In order to analyze experimental datasets, `extract_predict` module can used. Th
 * *Hyperparameters Tuning* notebook demonstrates the use of `gridsearch` to optimize the training parameters for the convolutional neural network.
 * *Extract_Defect* notebook uses `extract_predict` module and demonstrates to localize, extract and predict defects based on models trained on theoretical Multislice data. It also uses class activation maps for visualization of defect types and coordinates. Furthermore, it demonstrates different analysis of defects such as time evolution (or framewise) of defects.
 * *VideoFrame* notebook shows how to reconstruct the dynamic STEM movie with labeled defect predictions.
-### **defect_list** folder contains the localized defect data for all the frames in the dynamic STEM movie
-### **Figures** folder contains all the figures generated from the code in the **Jupyter_notebooks**   
-
 ### Use Case
 ![alt text](https://github.com/yiwen26/DLSSTRP/blob/master/UseCase/use%20case.png)
 
