@@ -35,6 +35,9 @@ In order to analyze experimental datasets, `extract_predict` module can used. Th
 * Models trained on WS<sub>2</sub> theoretical defects data can be found in the **Trained_Models** folder
 * **defect_list** folder contains the localized defect data for all the frames in the dynamic STEM movie
 * **Figures** folder contains all the figures generated from the code in the **Jupyter_notebooks**
+* **dataset** folder contains all the STEM images data we used to train convolutional neural network(saved as zipped .npy files, can be loaded by numpy.load())
+* **HyperparametersTuning** folder contains all the keras neural network models and model training historys we generated during hyperparameters tuning process, which can be loaded into jupyternotebook by gridsearch.load_res().
+
 ### Example
 #### **Jupyter_notebooks** folder contains example notebooks implementing different modules from the software
 * *GenerateTrainingData* notebook demonstrates the application of `preprocessing` module to generate images with augmentation and noise.
