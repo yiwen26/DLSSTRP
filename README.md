@@ -31,8 +31,8 @@ In order to analyze experimental datasets, `extract_predict` module can used. Th
 
 ## Repository Outlines
 ### Data
-* Multislice STEM data (with augmentation and noise added) for all individual defects in WS<sup>2</sup> can be found in the **Multislice** folder
-* Models trained on WS<sup>2</sup> theoretical defects data can be found in the **Trained_Models** folder
+* Multislice STEM data (with augmentation and noise added) for all individual defects in WS<sub>2</sub> can be found in the **Multislice** folder
+* Models trained on WS<sub>2</sub> theoretical defects data can be found in the **Trained_Models** folder
 * **defect_list** folder contains the localized defect data for all the frames in the dynamic STEM movie
 * **Figures** folder contains all the figures generated from the code in the **Jupyter_notebooks**
 ### Example
