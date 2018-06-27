@@ -1,4 +1,4 @@
-# Defects Discoverers (defectfinder)
+# Defect Finder
 ## Deep Learning of Solid-State Transformations and Reaction Pathways in 2D Materials
 [![Build Status](https://travis-ci.org/SarthakJariwala/DLSSTRP.svg?branch=master)](https://travis-ci.org/SarthakJariwala/DLSSTRP) [![PyPI version](https://badge.fury.io/py/defectfinder.svg)](https://badge.fury.io/py/defectfinder)
 
