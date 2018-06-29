@@ -22,11 +22,11 @@ def test_get_model():
     test if there will be an error when input a list of learning rate
 
     '''
-    model=gridsearch.get_model(0.5)
+    model=gridsearch.get_model(0.5,0.2)
     assert isinstance(model,keras.engine.sequential.Sequential),"Not return a keras sequential model"
 
     try:
-        model=gridsearch.get_model([0.1,0.05,0.001])
+        model=gridsearch.get_model([0.1,0.05,0.001],0.2)
     except (AssertionError):
         pass
     else:
