@@ -20,20 +20,12 @@ def test_get_model():
     test if there will be an error when input a list of learning rate
 
     '''
-<<<<<<< HEAD
-    model=gridsearch.get_model(0.5,0.2)
-    assert isinstance(model,keras.engine.sequential.Sequential),"Not return a keras sequential model"
+    model = gridsearch.get_model(0.5, 0.2)
+    assert isinstance(model, keras.engine.sequential.Sequential), (
+           "Not return a keras sequential model")
 
     try:
-        model=gridsearch.get_model([0.1,0.05,0.001],0.2)
-=======
-    model = gridsearch.get_model(0.5)
-    assert isinstance(
-        model, keras.engine.sequential.Sequential), "Not return a keras sequential model"
-
-    try:
-        model = gridsearch.get_model([0.1, 0.05, 0.001])
->>>>>>> 2159540c145fa7ba558caa01c95e9fb129dcd437
+        model = gridsearch.get_model([0.1, 0.05, 0.001], 0.2)
     except (AssertionError):
         pass
     else:
@@ -65,7 +57,8 @@ def test_gridsearch():
 def test_load_results():
     '''
     test if load_results() returns a list
-    test if it returns the history of validation loss,validation accuracy, loss and accuracy
+    test if it returns the history of validation loss,
+    validation accuracy, loss and accuracy
 
     '''
 
@@ -77,7 +70,8 @@ def test_load_results():
 
     for i in range(len(load_res)):
         assert list(load_res[i].keys()) == [
-            'val_loss', 'val_acc', 'loss', 'acc'], "Missing loss or accuracy history"
+            'val_loss', 'val_acc', 'loss', 'acc'], (
+            "Missing loss or accuracy history")
 
     try:
         gridsearch.load_results(learn_rate,
