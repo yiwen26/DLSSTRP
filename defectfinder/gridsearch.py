@@ -1,21 +1,11 @@
 from __future__ import print_function
 
-import keras
-from keras.preprocessing.image import array_to_img, img_to_array, load_img
-from keras.layers import Dense, Flatten, Dropout, Lambda, Activation
-from keras.layers import Conv2D, MaxPooling2D,GlobalAveragePooling2D,BatchNormalization
-from keras import layers
+from keras.layers import Dense, Activation
+from keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D, BatchNormalization
 from keras.models import Sequential
-from keras.models import load_model
-from keras import backend as K
-from keras.callbacks import *
-from keras.initializers import glorot_normal
-from keras.wrappers.scikit_learn import KerasClassifier
 
-from keras.optimizers import SGD,Adam
+from keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
-from sklearn.utils import resample
-from sklearn.model_selection import GridSearchCV
 
 from skimage.feature import blob_log
 
@@ -24,26 +14,20 @@ from matplotlib import pyplot as plt
 
 import numpy as np
 
-from scipy import fftpack
-from scipy import ndimage
-
 import cv2
 
 import pickle
 import os.path
 
+
 def detectGPU():
-    '''
-    detect if there is available GPU and show the devices list
-
+    """
+    Detects if there is available GPU and show the devices list
     Arguments: None
-
     Returns: print available GPUs and Devices imformation
-
     Raises:None
+    """
 
-    '''
-    
     from keras import backend as K
     from tensorflow.python.client import device_lib
 
@@ -57,14 +41,10 @@ def get_model(learn_rate,dropoutP):
 
     '''
     get keras convolutional neural network model with given learning rate
-
     Arguments:learning rate, dropout rate
-
     Returns:keras model
-
     Raises:Error if the input is not a float.
     Error if dropout rate is larger than 1
-
     '''
 
     assert type(learn_rate)==float,"learning rate must be a float"
@@ -106,11 +86,13 @@ def get_model(learn_rate,dropoutP):
     model.add(MaxPooling2D(pool_size=(2,2),strides=(2,2)))
     model.add(Dropout(dropoutP))
     
+
     model.add(GlobalAveragePooling2D())
     model.add(Dropout(dropoutP))
     model.add(Dense(6))
-    BatchNormalization(axis=1, momentum=0.99,epsilon=0.001,center=True)
+    BatchNormalization(axis=1, momentum=0.99, epsilon=0.001, center=True)
     model.add(Activation("softmax"))
+
     
     #sgd = SGD(lr=learn_rate,momentum=sgd_momentum)
     adam= Adam(lr=learn_rate)
@@ -124,30 +106,20 @@ def gridsearch(x_train,y_train_origin,learn_rate,sgd_momentum,batch_size,epochs,
     '''
     given the training dataset, it will be randomly split into training and validation set
     and the keras model will be trained with given learn_rate, batch size and epochs
-
     Arguments:
     x_train: x training dataset, need to be centered
-
     y_train_origin: y training dataset, needless to be centered
-
     learn_rate: a list of learning rate
-
     batchsize: a int
-
     epochs: a int
-
     filename: a folder will be created named by this filename
-
     Returns:
     fitresult: a list, each element is a keras history object
     models_grid: a list, each element is a trained model
     searchgrid: a list, the hyperparameters that have been searched
-
     every model, training history model_weights will be saved in a folder named learnrate
-
     Raises:
     error if the shape of x or y is wrong
-
     ''' 
     assert np.shape(x_train)[1:4]==(64, 64, 1),"the expected shape of x_train is (channels,img_x,img_y,1)"
     
@@ -190,32 +162,26 @@ def gridsearch(x_train,y_train_origin,learn_rate,sgd_momentum,batch_size,epochs,
     return fitresult,models_grid,search_grid
 
 
-
-
-
-def load_results(learn_rate,path):
-    '''
+def load_results(learn_rate, path):
+    """
     Load training history for a list of model
-
     Arguments:
-    learning rate
-    path:the directory where you store all the training history and model_weights
-
+        learn_rate: learning rate
+        path:the directory where you store all the training history and model_weights
     Returns: a list, each element is the training history of a model
-
     Raises: error if the path not exist
+    """
 
-    '''
-    
     assert os.path.exists(path), "No such path"
-    #path is the directory you save all the training history and model_weights
-    
-    load_res=[0]*len(learn_rate)
+    # path is the directory you save all the training history and model_weights
+
+    load_res = [0] * len(learn_rate)
     for i in range(len(learn_rate)):
-        with open(path+"/fitresult"+str(i)+".txt","rb") as fp:
-            load_res[i]=pickle.load(fp)
-            
+        with open(path + "/fitresult" + str(i) + ".txt", "rb") as fp:
+            load_res[i] = pickle.load(fp)
+
     return load_res
+
 
 def PlotLossAcc(load_res,search_grid):
     ''' 
@@ -338,5 +304,3 @@ def visualize_class_activation_map(model_path, img_path):
 
     return heatmap
         
-
-
